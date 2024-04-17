@@ -14,34 +14,37 @@
         <div class="row mb-4">
             <div class="col">
                 <header class="bg-danger py-3 text-center">
-                    <h1 class="mb-0 text-white">{{ $note->title }}</h1>
+                    <h1 class="mb-0 text-white">Editar Nota</h1>
                 </header>
-            </div>
-        </div>
-
-        <div class="row mb-4">
-            <div class="col text-end">
-                
             </div>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-12 col-md-9 col-lg-6">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td><b>Created:</b><b>{{ $note->created_at->diffForHumans() }}</b></td>
-                            <td><b>Updated:</b><b>{{ $note->updated_at->diffForHumans() }}</b></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p style="white-space: pre-wrap;">{{ $note->content }}</p>
+                
+                <form action="{{ route('notes.update') }}" method="post">
+                    @csrf
+                    @method('put')
 
-                <div class="text-end">
-                    <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-warning">Editar Nota</a>
-                </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Título</label>
+                        <input type="text" name="title" class="form-control" value="{{ $note->title }}">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="" class="form-label">Contenido</label>
+                        <textarea name="content" rows="10" class="form-control">{{ $note->content }}</textarea>
+                    </div>
+
+                    <div class="text-end">
+                        <input type="submit" value="Actualizar Nota" class="btn btn-warning">
+                    </div>
+
+                </form>
+
             </div>
         </div>
     </div>
+
 </body>
 </html>

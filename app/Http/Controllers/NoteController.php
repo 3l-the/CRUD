@@ -78,7 +78,8 @@ class NoteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return view('notes.update')
+            ->with('note', Note::nota_por_id($id));
     }
 
     /**
